@@ -1,0 +1,239 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>com.zxytech.jurest.examples</groupId>
+  <artifactId>jurest-examples</artifactId>
+  <version>1.0-SNAPSHOT</version>
+  <packaging>pom</packaging>
+
+  <modules>
+    <module>rest-assured-itest-java</module>
+  </modules>
+
+  <dependencies>
+    <dependency>
+      <groupId>com.zxytech.jurest</groupId>
+      <artifactId>jurest</artifactId>
+      <version>1.0-SNAPSHOT</version>
+    </dependency>
+
+    <!-- https://mvnrepository.com/artifact/org.projectlombok/lombok -->
+    <dependency>
+      <groupId>org.projectlombok</groupId>
+      <artifactId>lombok</artifactId>
+      <version>1.18.18</version>
+      <scope>provided</scope>
+    </dependency>
+
+  </dependencies>
+
+
+  <dependencyManagement>
+    <dependencies>
+      <!-- https://mvnrepository.com/artifact/org.junit/junit-bom -->
+      <dependency>
+        <groupId>org.junit</groupId>
+        <artifactId>junit-bom</artifactId>
+        <version>5.7.0</version>
+        <type>pom</type>
+      </dependency>
+      <!-- https://mvnrepository.com/artifact/com.fasterxml.jackson/jackson-bom -->
+      <dependency>
+        <groupId>com.fasterxml.jackson</groupId>
+        <artifactId>jackson-bom</artifactId>
+        <version>2.12.0</version>
+        <type>pom</type>
+      </dependency>
+
+      <dependency>
+        <groupId>com.zxytech.jurest</groupId>
+        <artifactId>jurest-bom</artifactId>
+        <version>1.0-SNAPSHOT</version>
+        <type>pom</type>
+      </dependency>
+
+    </dependencies>
+
+  </dependencyManagement>
+
+  <properties>
+    <java.version>11</java.version>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+    <maven.compiler.source>${java.version}</maven.compiler.source>
+    <maven.compiler.target>${java.version}</maven.compiler.target>
+    <maven.compiler.compilerVersion>${java.version}</maven.compiler.compilerVersion>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <aspectj.version>1.9.5</aspectj.version>
+    <allure.version>2.13.8</allure.version>
+    <pmd.version>6.31.0</pmd.version>
+  </properties>
+
+  <build>
+    <plugins>
+      <!-- https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-compiler-plugin -->
+      <plugin>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>3.8.1</version>
+        <configuration>
+          <source>11</source>
+          <target>11</target>
+          <encoding>UTF-8</encoding>
+          <forceJavacCompilerUse>true</forceJavacCompilerUse>
+        </configuration>
+      </plugin>
+
+      <!-- https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-surefire-plugin -->
+      <plugin>
+        <artifactId>maven-surefire-plugin</artifactId>
+        <version>2.22.2</version>
+        <configuration>
+          <argLine>
+            -javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar"
+          </argLine>
+        </configuration>
+        <dependencies>
+          <!-- https://mvnrepository.com/artifact/org.aspectj/aspectjweaver -->
+          <dependency>
+            <groupId>org.aspectj</groupId>
+            <artifactId>aspectjweaver</artifactId>
+            <version>${aspectj.version}</version>
+          </dependency>
+
+          <!-- https://mvnrepository.com/artifact/org.apache.maven.surefire/surefire-junit-platform -->
+          <dependency>
+            <groupId>org.apache.maven.surefire</groupId>
+            <artifactId>surefire-junit-platform</artifactId>
+            <version>2.22.2</version>
+          </dependency>
+        </dependencies>
+      </plugin>
+      <!-- https://mvnrepository.com/artifact/io.qameta.allure/allure-maven -->
+      <plugin>
+        <groupId>io.qameta.allure</groupId>
+        <artifactId>allure-maven</artifactId>
+        <version>2.10.0</version>
+        <configuration>
+          <reportVersion>${allure.version}</reportVersion>
+          <propertiesFilePath>${basedir}/src/test/resources/allure.properties
+          </propertiesFilePath>
+          <servePort>9000</servePort>
+          <allureDownloadUrl>
+            https://repo.maven.apache.org/maven2/io/qameta/allure/allure-commandline/${allure.version}/allure-commandline-${allure.version}.zip
+          </allureDownloadUrl>
+        </configuration>
+      </plugin>
+
+      <!-- https://maven.apache.org/plugins/maven-pmd-plugin/index.html -->
+      <plugin>
+        <artifactId>maven-pmd-plugin</artifactId>
+        <version>3.14.0</version>
+        <executions>
+          <execution>
+            <goals>
+              <goal>check</goal>
+              <goal>cpd-check</goal>
+            </goals>
+          </execution>
+        </executions>
+        <dependencies>
+          <dependency>
+            <groupId>net.sourceforge.pmd</groupId>
+            <artifactId>pmd-core</artifactId>
+            <version>${pmd.version}</version>
+          </dependency>
+          <dependency>
+            <groupId>net.sourceforge.pmd</groupId>
+            <artifactId>pmd-java</artifactId>
+            <version>${pmd.version}</version>
+          </dependency>
+          <dependency>
+            <groupId>net.sourceforge.pmd</groupId>
+            <artifactId>pmd-javascript</artifactId>
+            <version>${pmd.version}</version>
+          </dependency>
+          <dependency>
+            <groupId>net.sourceforge.pmd</groupId>
+            <artifactId>pmd-jsp</artifactId>
+            <version>${pmd.version}</version>
+          </dependency>
+          <!-- https://mvnrepository.com/artifact/com.alibaba.p3c/p3c-pmd -->
+          <dependency>
+            <groupId>com.alibaba.p3c</groupId>
+            <artifactId>p3c-pmd</artifactId>
+            <version>2.1.1</version>
+          </dependency>
+        </dependencies>
+      </plugin>
+
+      <!-- https://maven.apache.org/plugins/maven-site-plugin/ -->
+      <!-- https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-site-plugin -->
+      <plugin>
+        <artifactId>maven-site-plugin</artifactId>
+        <version>3.9.1</version>
+        <configuration>
+          <locales>en,zh_CN</locales>
+          <port>9000</port>
+          <!-- <tempWebappDirectory>${basedir}/target/site/tempdir</tempWebappDirectory> -->
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+
+  <reporting>
+    <excludeDefaults>true</excludeDefaults>
+
+    <plugins>
+      <!-- https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-pmd-plugin -->
+      <plugin>
+        <artifactId>maven-pmd-plugin</artifactId>
+        <configuration>
+          <sourceEncoding>utf-8</sourceEncoding>
+          <includeTests>true</includeTests>
+          <includeXmlInSite>true</includeXmlInSite>
+          <aggregate>true</aggregate>
+          <targetJdk>11</targetJdk>
+          <rulesets>
+            <ruleset>rulesets/java/maven-pmd-plugin-default.xml</ruleset>
+            <ruleset>rulesets/java/ali-comment.xml</ruleset>
+            <ruleset>rulesets/java/ali-concurrent.xml</ruleset>
+            <ruleset>rulesets/java/ali-constant.xml</ruleset>
+            <ruleset>rulesets/java/ali-exception.xml</ruleset>
+            <ruleset>rulesets/java/ali-flowcontrol.xml</ruleset>
+            <ruleset>rulesets/java/ali-naming.xml</ruleset>
+            <ruleset>rulesets/java/ali-oop.xml</ruleset>
+            <ruleset>rulesets/java/ali-orm.xml</ruleset>
+            <ruleset>rulesets/java/ali-other.xml</ruleset>
+            <ruleset>rulesets/java/ali-set.xml</ruleset>
+          </rulesets>
+          <printFailingErrors>true</printFailingErrors>
+        </configuration>
+        <reportSets>
+          <reportSet>
+            <reports>
+              <report>pmd</report>
+              <report>cpd</report>
+            </reports>
+          </reportSet>
+        </reportSets>
+      </plugin>
+
+      <plugin>
+        <groupId>io.qameta.allure</groupId>
+        <artifactId>allure-maven</artifactId>
+        <configuration>
+          <reportVersion>${allure.version}</reportVersion>
+          <propertiesFilePath>${basedir}/src/test/resources/allure.properties
+          </propertiesFilePath>
+          <servePort>9000</servePort>
+          <allureDownloadUrl>
+            https://repo.maven.apache.org/maven2/io/qameta/allure/allure-commandline/${allure.version}/allure-commandline-${allure.version}.zip
+          </allureDownloadUrl>
+        </configuration>
+      </plugin>
+    </plugins>
+  </reporting>
+
+</project>
