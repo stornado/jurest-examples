@@ -34,14 +34,14 @@ GitHub.sublime-settings
 
 ### Eclipse template
 .metadata
-bin/
-tmp/
+**/bin/
+**/tmp/
 *.tmp
 *.bak
 *.swp
 *~.nib
 local.properties
-.settings/
+**/.settings/
 .loadpath
 .recommenders
 
@@ -79,11 +79,11 @@ local.properties
 .springBeans
 
 # Code Recommenders
-.recommenders/
+**/.recommenders/
 
 # Annotation Processing
-.apt_generated/
-.apt_generated_test/
+**/.apt_generated/
+**/.apt_generated_test/
 
 # Scala IDE specific (Scala & Java development for Eclipse)
 .cache-main
@@ -92,42 +92,42 @@ local.properties
 
 # Uncomment this line if you wish to ignore the project description file.
 # Typically, this file would be tracked if it contains build/dependency configurations:
-.project
+**/.project
 
 ### SBT template
 # Simple Build Tool
 # http://www.scala-sbt.org/release/docs/Getting-Started/Directories.html#configuring-version-control
 
-dist/*
-target/
-lib_managed/
-src_managed/
-project/boot/
-project/plugins/project/
+**/dist/*
+**/target/
+**/lib_managed/
+**/src_managed/
+**/project/boot/
+**/project/plugins/project/
 .history
 .cache
-.lib/
+**/.lib/
 
 ### NetBeans template
 **/nbproject/private/
 **/nbproject/Makefile-*.mk
 **/nbproject/Package-*.bash
-build/
-nbbuild/
-nbdist/
-.nb-gradle/
+**/build/
+**/nbbuild/
+**/nbdist/
+**/.nb-gradle/
 
 ### JDeveloper template
 # default application storage directory used by the IDE Performance Cache feature
-.data/
+**/.data/
 
 # used for ADF styles caching
-temp/
+**/temp/
 
 # default output directories
-classes/
-deploy/
-javadoc/
+**/classes/
+**/deploy/
+**/javadoc/
 
 # lock file, a part of Oracle Credential Store Framework
 cwallet.sso.lck
@@ -142,7 +142,7 @@ cwallet.sso.lck
 *.ctxt
 
 # Mobile Tools for Java (J2ME)
-.mtj.tmp/
+**/.mtj.tmp/
 
 # Package Files #
 *.jar
@@ -201,10 +201,10 @@ cmake-build-*/
 *.iws
 
 # IntelliJ
-out/
+**/out/
 
 # mpeltonen/sbt-idea plugin
-.idea_modules/
+**/.idea_modules/
 
 # JIRA plugin
 atlassian-ide-plugin.xml
@@ -301,6 +301,8 @@ HELP.md
 !.mvn/wrapper/maven-wrapper.jar
 .github/
 .gitlab/
+.git/
+
 
 # Allure
 **/.allure/

@@ -195,6 +195,7 @@
           <includeXmlInSite>true</includeXmlInSite>
           <aggregate>true</aggregate>
           <targetJdk>11</targetJdk>
+          <skipEmptyReport>true</skipEmptyReport>
           <rulesets>
             <ruleset>rulesets/java/maven-pmd-plugin-default.xml</ruleset>
             <ruleset>rulesets/java/ali-comment.xml</ruleset>
