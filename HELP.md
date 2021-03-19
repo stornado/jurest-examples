@@ -3,7 +3,7 @@
 Clone the repo:
 
 ```bash
-git clone git@github.com:allure-examples/allure-junit5-example.git
+git clone --depth=1 https://gitee.com/stornado/jurest-examples.git
 ```
 
 Then build the project (build requires JDK 1.8 or higher):
